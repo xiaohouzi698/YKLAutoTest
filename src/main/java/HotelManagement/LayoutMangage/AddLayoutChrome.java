@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AddLayoutChrome {
 
-    public static void main(String[] args) throws AWTException {
+    public static void main(String[] args) throws AWTException, InterruptedException {
         //System.setProperty("webdriver.firefox.marionette", ".\\Tools\\geckodriver.exe");
 
         //设置驱动所在位置
@@ -40,35 +40,90 @@ public class AddLayoutChrome {
         WebElement loginButton = ((ChromeDriver) driver).findElementByXPath("/html/body/div/div[1]/div[2]/form/button");
         loginButton.click();
 
-        try {
-            //页面等待
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
 
         WebElement gethotelMangageButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"side-menu\"]/li[2]/a/span[1]");
         gethotelMangageButton.click();
-        try {
-            //页面等待
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
 
         WebElement gethotelLayoutButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"side-menu\"]/li[2]/ul/li[3]/a");
         gethotelLayoutButton.click();
 
+        Thread.sleep(1000);
         driver.switchTo().frame("iframe3");
-
+        Thread.sleep(1000);
         // driver.switchTo().frame(driver.findElementByXPath("//iframe[contains(@src,'myframe')]"));
-        Actions action=new Actions(driver);
-        action.moveToElement(((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[2]/div/div/div/div[1]")).perform();
 
+        WebElement hotelNameSVGClick = ((ChromeDriver) driver).findElementByCssSelector("#root > div > div.layout-3QX0W > div > div > span > i > svg");
+        hotelNameSVGClick.click();
 
-        WebElement hotelNameText = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[2]/div/div/div/div[1]");
+        Thread.sleep(1000);
+        WebElement hotelNameText = ((ChromeDriver) driver).findElementByCssSelector("#root > div > div.layout-3QX0W > div > div > div > div.ant-select-search.ant-select-search--inline > div > input");
         hotelNameText.sendKeys("测试");
-        hotelNameText.click();
+        Thread.sleep(1000);
+
+        // 按下回车
+        robot.keyPress(KeyEvent.VK_ENTER);
+        // 释放回车
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        // 按下下键
+        robot.keyPress(KeyEvent.VK_DOWN);
+        // 释放下键
+        robot.keyRelease(KeyEvent.VK_DOWN);
+        // 按下回车
+        robot.keyPress(KeyEvent.VK_ENTER);
+        // 释放回车
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        WebElement clickAddLayoutButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[2]/button");
+        clickAddLayoutButton.click();
+        Thread.sleep(1000);
+
+
+        WebElement layoutNameText = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(1) > div:nth-child(1) > div.flex1 > input");
+        layoutNameText.sendKeys("大床房");
+
+        WebElement layoutFloorText = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(1) > div:nth-child(2) > div.flex1 > input");
+        layoutFloorText.sendKeys("5-9");
+
+        WebElement layoutPlaceHolderText = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(2) > div:nth-child(1) > div.flex1 > input");
+        layoutPlaceHolderText.sendKeys("20-35");
+
+        WebElement layoutPersonNumberText = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(2) > div:nth-child(2) > div.flex1 > div > div.ant-input-number-input-wrap > input");
+        layoutPersonNumberText.sendKeys("5");
+        Thread.sleep(1000);
+
+        WebElement layoutSmokeRadio = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(3) > div:nth-child(1) > div.flex1 > div > label:nth-child(2) > span.ant-radio > input");
+        layoutSmokeRadio.click();
+
+        WebElement layoutWindowsRadio = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(3) > div:nth-child(2) > div.flex1 > div > label:nth-child(2) > span.ant-radio > input");
+        layoutWindowsRadio.click();
+
+        WebElement layoutNetworkRadio = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(4) > div:nth-child(1) > div.flex1 > div > label:nth-child(2) > span.ant-radio > input");
+        layoutNetworkRadio.click();
+
+        WebElement layoutWIFIRadio = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(4) > div:nth-child(2) > div.flex1 > div > label:nth-child(3) > span.ant-radio > input");
+        layoutWIFIRadio.click();
+
+        WebElement layoutAddBedRadio = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(5) > div > div.flex1 > div > label:nth-child(2) > span.ant-radio > input");
+        layoutAddBedRadio.click();
+        Thread.sleep(1000);
+        WebElement layoutBedSizeChooseClick = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(6) > div > div.flex1 > div > div.ant-select.ant-select-enabled > div > span > i > svg");
+        layoutBedSizeChooseClick.click();
+
+        // 按下下键
+        robot.keyPress(KeyEvent.VK_DOWN);
+        // 释放下键
+        robot.keyRelease(KeyEvent.VK_DOWN);
+        // 按下回车
+        robot.keyPress(KeyEvent.VK_ENTER);
+        // 释放回车
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        Thread.sleep(1000);
+
+        WebElement layoutBedSizeClick = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(6) > div > div.flex1 > div > div.flexbox.fdc > div > div.ant-select.ant-select-enabled > div > span > i > svg");
+        layoutBedSizeClick.click();
 
         // 按下下键
         robot.keyPress(KeyEvent.VK_DOWN);
@@ -80,49 +135,14 @@ public class AddLayoutChrome {
         robot.keyRelease(KeyEvent.VK_ENTER);
 
 
-
-        WebElement clickAddLayoutButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[2]/button");
-        clickAddLayoutButton.click();
-
-
-
-        WebElement getCooperativeStartTimeText = ((ChromeDriver) driver).findElementByCssSelector("div.hotelFill-1yLuC:nth-child(16) > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) > span:nth-child(1) > div:nth-child(1) > input:nth-child(1)");
-        getCooperativeStartTimeText.click();
-
-//        WebElement getCooperativeStartTimeTodayButton = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(12) > div > div > div > div > div.ant-calendar-date-panel > div.ant-calendar-footer > span");
-//        getCooperativeStartTimeTodayButton.click();
-        // 按下回车
-        robot.keyPress(KeyEvent.VK_ENTER);
-        // 释放回车
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        WebElement getCooperativeEndTimeText = ((ChromeDriver) driver).findElementByCssSelector("#root > div > div.hotelFill-1R9R1 > div > div.ant-tabs-content.ant-tabs-content-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div:nth-child(16) > div:nth-child(5) > div:nth-child(2) > div.flex1 > span > div > input");
-        getCooperativeEndTimeText.click();
-
-//        WebElement getCooperativeEndTimeTodayButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[3]/div/div[2]/div[1]/div/div[16]/div[5]/div[2]/div[2]/span/div/input");
-//        getCooperativeEndTimeTodayButton.click();
-        // 按下回车
-        robot.keyPress(KeyEvent.VK_ENTER);
-        // 释放回车
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        WebElement clickCooperativeIdButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[3]/div/div[2]/div[1]/div/div[16]/div[6]/div[1]/div[2]/div[1]/button");
-        clickCooperativeIdButton.click();
-
-        //合同扫描件上传
-        StringSelection hotelCooperativeImageURL = new StringSelection("\"14.jpg\" \"15.jpg\" \"16.jpg\" \"17.jpg\" \"18.jpg\" \"19.jpg\" ");
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(hotelCooperativeImageURL, null);
-        System.out.println("selection" + hotelCooperativeImageURL);
-        WebElement hotelCooperativeImageButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[3]/div/div[2]/div[1]/div/div[16]/div[6]/div[2]/div[2]/span/div[2]/span");
-        hotelCooperativeImageButton.click();
+        StringSelection layoutImageURL = new StringSelection("C:\\Users\\Administrator\\Desktop\\hotel\\40.jpg");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(layoutImageURL, null);
+        System.out.println("selection" + layoutImageURL);
+        WebElement layoutImageButton = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div.layoutAdder-16ejT > div:nth-child(7) > div > div.flex1 > span > div.ant-upload.ant-upload-select.ant-upload-select-picture-card > span");
+        layoutImageButton.click();
         // 新建一个Robot类的对象
         // Robot robotTax = new Robot();s
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         // 按下回车
         robot.keyPress(KeyEvent.VK_ENTER);
         // 释放回车
@@ -133,52 +153,16 @@ public class AddLayoutChrome {
         // 释放 CTRL+V
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_V);
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         // 点击回车 Enter
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
 
+        Thread.sleep(3000);
 
+        WebElement toAssessorButton = ((ChromeDriver) driver).findElementByCssSelector("body > div:nth-child(8) > div > div.ant-drawer-content-wrapper > div > div > div.ant-drawer-body > div:nth-child(2) > button.ant-btn.ant-btn-primary");
+        toAssessorButton.click();
 
-
-        //酒店封面照片上传
-        StringSelection hotelImageURL = new StringSelection("\"20.jpg\" \"21.jpg\" \"22.jpg\" \"23.jpg\" \"24.jpg\" \"25.jpg\" ");
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(hotelImageURL, null);
-        System.out.println("selection" + hotelImageURL);
-        WebElement hotelImageButton = ((ChromeDriver) driver).findElementByXPath("//*[@id=\"root\"]/div/div[3]/div/div[2]/div[1]/div/div[18]/div/div/div[2]/span/div[2]/span");
-        hotelImageButton.click();
-        // 新建一个Robot类的对象
-        // Robot robotTax = new Robot();s
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // 按下回车
-        robot.keyPress(KeyEvent.VK_ENTER);
-        // 释放回车
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        // 按下 CTRL+V
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        // 释放 CTRL+V
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_V);
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // 点击回车 Enter
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
 
 
         //切换回主按钮
