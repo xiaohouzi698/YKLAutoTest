@@ -70,6 +70,11 @@ public class AddLayoutChrome {
         robot.keyPress(KeyEvent.VK_DOWN);
         // 释放下键
         robot.keyRelease(KeyEvent.VK_DOWN);
+
+        // 按下下键
+        robot.keyPress(KeyEvent.VK_DOWN);
+        // 释放下键
+        robot.keyRelease(KeyEvent.VK_DOWN);
         // 按下回车
         robot.keyPress(KeyEvent.VK_ENTER);
         // 释放回车
